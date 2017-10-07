@@ -10,6 +10,8 @@ let sentenceDiv
 let sliderDiv
 let patternText
 let rulesP
+let generateButton
+let submitButton
 
 rules[0] = {
   a: "F",
@@ -50,7 +52,7 @@ function generate() {
 }
 
 function drawTree() {
-  angle = radians(slider.value())
+  angle = radians(25)
   background(51)
   resetMatrix()
   translate(width/2, height)
@@ -76,9 +78,10 @@ function drawTree() {
 
 function setup() {
   patternText = select("#pattern")
-  let generateButton = select("#generate")
+  generateButton = select("#generate")
   generateButton.mousePressed(generate)
-  slider = createSlider(0,50,25,0.5)
+
+  // slider = createSlider(0,50,25,0.5)
   canvasDiv = select("#canvas")
 
   const bb = document.querySelector('#canvas')
@@ -91,21 +94,12 @@ function setup() {
                         html.clientWidth, html.scrollWidth, html.offsetWidth );
   canvas = createCanvas(width/3,400)
   canvas.position(bb.left, height/2)
-  // canvasDiv.html(canvas)
-
-  // slider = createSlider(0,50,25,0.5)
-  // background(51)
 
   sentenceP = select("#sentence")
   sentenceP.html(axiom)
   rulesP = select("#rules")
+  // rulesP.html(axiom + "->" + patternText.value())
   drawTree()
-  // sliderDiv = select("#slider")
-
-
-  // sliderDiv.html(slider)
-
-
 }
 
 function draw() {
