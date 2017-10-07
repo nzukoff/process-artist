@@ -1,3 +1,22 @@
 body {
   background-color: orange;
+
 }
+
+.title {
+  font-family: Helvetica;
+  text-align: center;
+  width: 1000px;
+  margin: auto;
+  padding-top: 100px;
+}
+
+/*.canvas {
+  float:left;
+  display:inline;
+}
+
+.text {
+  float:left;
+  display:inline;
+}*/

@@ -5,6 +5,9 @@ let len = 100
 let angle
 let slider
 let generations = 0
+let canvas
+let sentenceDiv
+let sliderDiv
 
 rules[0] = {
   a: "F",
@@ -31,8 +34,10 @@ function generate() {
   }
   sentence = nextSentence
   // createP(sentence)
+  sentenceDiv.html(sentence)
   if (generations <= 5) {
-    createP(generations)
+    let genText = select("#generations")
+    genText.html(`Generations: ${generations}`)
     drawTree()
   }
 
@@ -64,16 +69,35 @@ function drawTree() {
 }
 
 function setup() {
-  createCanvas(400, 400)
-  slider = createSlider(0,50,25,0.5)
-  background(51)
-  drawTree()
-  createP(axiom)
-  var button = createButton("generate")
+  let button = select("#generate")
   button.mousePressed(generate)
+  slider = createSlider(0,50,25,0.5)
+  canvasDiv = select("#canvas")
+
+  const bb = document.querySelector('#canvas')
+                    .getBoundingClientRect()
+
+  const body = document.body, html = document.documentElement;
+  const height = Math.max(body.scrollHeight, body.offsetHeight,
+                       html.clientHeight, html.scrollHeight, html.offsetHeight );
+  const width = Math.max(body.scrollWidth, body.offsetWidth,
+                        html.clientWidth, html.scrollWidth, html.offsetWidth );
+  canvas = createCanvas(width/3,400)
+  canvas.position(bb.left, height/2)
+  // canvasDiv.html(canvas)
+
+  // slider = createSlider(0,50,25,0.5)
+  // background(51)
+  drawTree()
+  sentenceDiv = select("#sentence")
+  sentenceDiv.html(axiom)
+  // sliderDiv = select("#slider")
+
+
+  // sliderDiv.html(slider)
+
 
 }
-//
-// function draw() {
-//   background(0);
-// }
+
+function draw() {
+}
