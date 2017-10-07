@@ -8,13 +8,19 @@ let generations = 0
 let canvas
 let sentenceDiv
 let sliderDiv
+let patternText
+let rulesP
 
 rules[0] = {
   a: "F",
   b: "FF+[+F-F-F]-[-F+F+F]"
+  // b: patternText.value()
 }
 
 function generate() {
+  rules[0].b = patternText.value()
+  rulesP.html(axiom + "->" + patternText.value())
+  console.log("RULES ARE ", rules)
   len *= 0.5
   generations++
   let nextSentence = ""
@@ -34,7 +40,7 @@ function generate() {
   }
   sentence = nextSentence
   // createP(sentence)
-  sentenceDiv.html(sentence)
+  sentenceP.html(sentence)
   if (generations <= 5) {
     let genText = select("#generations")
     genText.html(`Generations: ${generations}`)
@@ -69,8 +75,9 @@ function drawTree() {
 }
 
 function setup() {
-  let button = select("#generate")
-  button.mousePressed(generate)
+  patternText = select("#pattern")
+  let generateButton = select("#generate")
+  generateButton.mousePressed(generate)
   slider = createSlider(0,50,25,0.5)
   canvasDiv = select("#canvas")
 
@@ -88,9 +95,11 @@ function setup() {
 
   // slider = createSlider(0,50,25,0.5)
   // background(51)
+
+  sentenceP = select("#sentence")
+  sentenceP.html(axiom)
+  rulesP = select("#rules")
   drawTree()
-  sentenceDiv = select("#sentence")
-  sentenceDiv.html(axiom)
   // sliderDiv = select("#slider")
 
 

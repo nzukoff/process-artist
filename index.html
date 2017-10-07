@@ -29,6 +29,17 @@
           <div class="col-3">
             <button type="button" id="generate">Generate</button>
             <br /><br />
+            <input type="text" id="pattern"></input>
+            <button type="submit">Submit Pattern</button>
+            <br /><br />
+            <ul>
+              <li>F : Move Forward</li>
+              <li>+ : Rotate Right</li>
+              <li>- : Rotate Left</li>
+              <li>[ : Start Line</li>
+              <li>] : End Line</li>
+            </ul>
+            <br /><br />
             <p id="generations"></p>
             <div id="slider" />
             </div>
@@ -38,6 +49,7 @@
             </div>
           </div>
           <div class="col-3">
+            <p id="rules"></p>
             <p id="sentence"></p>
           </div>
         </div>
