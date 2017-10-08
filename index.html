@@ -27,11 +27,12 @@
         </div>
         <div class="row" style="margin-top:5%">
           <div class="col-3">
-            <input type="text" id="pattern"></input>
-            <button type="submitButton">Submit Pattern</button>
+
+            <!-- <button type="submit">Submit Pattern</button> -->
             <br /><br />
+
             <p>Example pattern:</p>
-            <p>"FF+[+F-F-F]-[-F+F+F]"</p>
+            <p>FF+[+F-F-F]-[-F+F+F]</p>
             <ul>
               <li>F : Move Forward</li>
               <li>+ : Rotate Right</li>
@@ -39,7 +40,9 @@
               <li>[ : Start Line</li>
               <li>] : End Line</li>
             </ul>
-            <button type="button" id="generate">Generate</button>
+            <p>Insert your own pattern!</p>
+            <input type="text" id="pattern"></input>
+            <button type="submit" id="generate">Generate</button>
             <br /><br />
             <br /><br />
             <p id="generations"></p>

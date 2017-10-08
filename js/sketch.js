@@ -19,8 +19,14 @@ rules[0] = {
   // b: patternText.value()
 }
 
+rules[1] = {
+  a: "F",
+  b: ""
+}
+
+
 function generate() {
-  rules[0].b = patternText.value()
+  rules[1].b = patternText.value()
   rulesP.html(axiom + "->" + patternText.value())
   console.log("RULES ARE ", rules)
   len *= 0.5
@@ -80,7 +86,6 @@ function setup() {
   patternText = select("#pattern")
   generateButton = select("#generate")
   generateButton.mousePressed(generate)
-
   // slider = createSlider(0,50,25,0.5)
   canvasDiv = select("#canvas")
 
