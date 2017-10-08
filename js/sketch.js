@@ -8,10 +8,14 @@ let generations = 0
 let canvas
 let sentenceDiv
 let sliderDiv
+let patternInput
 let patternText
 let rulesP
 let generateButton
 let submitButton
+let resetButton
+let nextSentence
+let genText
 
 rules[0] = {
   a: "F",
@@ -19,19 +23,25 @@ rules[0] = {
   // b: patternText.value()
 }
 
-rules[1] = {
-  a: "F",
-  b: ""
-}
+// rules[1] = {
+//   a: "FF",
+//   b: ""
+// }
 
 
 function generate() {
-  rules[1].b = patternText.value()
-  rulesP.html(axiom + "->" + patternText.value())
+  console.log("PATTERN INPUT IS ", patternInput)
+  if (!patternText) {
+    patternText = patternInput.value()
+    patternInput.hide()
+    // generateButton.html()
+  }
+  rules[0].b = patternText
+  rulesP.html(axiom + "->" + patternText)
   console.log("RULES ARE ", rules)
   len *= 0.5
   generations++
-  let nextSentence = ""
+  nextSentence = ""
   for (let i = 0; i < sentence.length; i++) {
     let current = sentence.charAt(i)
     let found = false
@@ -50,11 +60,13 @@ function generate() {
   // createP(sentence)
   sentenceP.html(sentence)
   if (generations <= 5) {
-    let genText = select("#generations")
-    genText.html(`Generations: ${generations}`)
+    genText = select("#generations")
+    genText.html(`Generation ${generations}:`)
+    genText.style("font-weight","bold")
+    console.log("GEN TEXT IS ", genText)
     drawTree()
   }
-
+  patternInput.value("")
 }
 
 function drawTree() {
@@ -82,13 +94,40 @@ function drawTree() {
 
 }
 
+function reset() {
+  console.log("RESET")
+  rules[0].b = ""
+  rulesP.html(axiom + "->")
+  len = 100
+  generations = 0
+  sentence = axiom
+  sentenceP.html("")
+  genText.html("Generation 0:")
+  patternInput.show()
+  patternText = ""
+  drawTree()
+}
+
 function setup() {
-  patternText = select("#pattern")
+  patternInput = select("#pattern")
   generateButton = select("#generate")
   generateButton.mousePressed(generate)
   // slider = createSlider(0,50,25,0.5)
   canvasDiv = select("#canvas")
+  createNewCanvas()
+  sentenceP = select("#sentence")
+  // sentenceP.html(axiom)
+  rulesP = select("#rules")
+  rulesP.html(axiom + "->")
+  resetButton = select("#reset")
+  resetButton.mousePressed(reset)
+  sentenceDiv = select("#sentenceDiv")
+  sentenceDiv.style("height","40%")
+  sentenceDiv.style("overflow-y","scroll")
+  drawTree()
+}
 
+function createNewCanvas() {
   const bb = document.querySelector('#canvas')
                     .getBoundingClientRect()
 
@@ -98,13 +137,7 @@ function setup() {
   const width = Math.max(body.scrollWidth, body.offsetWidth,
                         html.clientWidth, html.scrollWidth, html.offsetWidth );
   canvas = createCanvas(width/3,400)
-  canvas.position(bb.left, height/2)
-
-  sentenceP = select("#sentence")
-  sentenceP.html(axiom)
-  rulesP = select("#rules")
-  // rulesP.html(axiom + "->" + patternText.value())
-  drawTree()
+  canvas.position(bb.left, height/2.5)
 }
 
 function draw() {

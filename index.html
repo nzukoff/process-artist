@@ -14,7 +14,7 @@
         <div class="row" style="margin-top:10%">
           <div class="col-12 text-center">
             <div className="title">
-              <h3>I am inspired by Aristid Lindenmayer's development of a formal language (L-systems) to model the behavior of cells of plants. It is a recursive system that leads to self similarilty and results in fractals and complex objects as generations continue. There is beauty and art in the digital and natural patterns that this set of rules creates. </h3>
+              <h3>I am inspired by <a href="https://en.wikipedia.org/wiki/Aristid_Lindenmayer">Aristid Lindenmayer's</a> development of a formal language <a href="https://en.wikipedia.org/wiki/L-system">(L-systems)</a> to model the behavior of cells of plants. It is a recursive system that leads to self similarilty and results in fractals and complex objects as generations continue. There is beauty and art in the <a href="http://williamchyr.com/tag/generative-art/">digital</a> and <a href="https://upload.wikimedia.org/wikipedia/commons/7/74/Dragon_trees.jpg">natural</a> patterns that this set of rules creates. </h3>
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@
             <!-- <button type="submit">Submit Pattern</button> -->
             <br /><br />
 
-            <p>Example pattern:</p>
+            <p><strong>Example pattern:</strong></p>
             <p>FF+[+F-F-F]-[-F+F+F]</p>
             <ul>
               <li>F : Move Forward</li>
@@ -44,19 +44,24 @@
             <input type="text" id="pattern"></input>
             <button type="submit" id="generate">Generate</button>
             <br /><br />
-            <br /><br />
-            <p id="generations"></p>
-            <div id="slider" />
-            </div>
+
+            <!-- <div id="slider" /> -->
+            <button id="reset">Reset</button>
           </div>
           <div class="col-6">
             <div id="canvas">
             </div>
           </div>
           <div class="col-3">
+            <p><strong>Rule:</strong></p>
             <p id="rules"></p>
-            <p id="sentence"></p>
+            <p id="generations"><strong>Generation 0:</strong></p>
+            <div id="sentenceDiv">
+              <p id="sentence"></p>
+            </div>
           </div>
+        </div>
+        <div class="row" style="margin-top:10%">
         </div>
       </div>
 
